@@ -1,0 +1,40 @@
+.order-system-app {
+  font-family: "Schibsted Grotesk", sans-serif;
+  text-align: center;
+  background-color: #f9f6f7;
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 70px;
+    padding-bottom: 10px;
+
+    .switch-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      .toggle-container {
+        width: 100px;
+        height: 45px;
+        border-radius: 30px;
+        background-color: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .toggle-circle {
+          background-color: #2c786c;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .order-system-container {
+    display: flex;
+  }
+}

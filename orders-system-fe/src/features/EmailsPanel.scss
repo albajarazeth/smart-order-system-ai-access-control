@@ -1,0 +1,26 @@
+.preview-container {
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  gap: 20;
+  border: 2px solid #9ba6a5;
+  padding: 10px 10px;
+  cursor: pointer;
+  .name {
+    width: 150px;
+    text-align: left;
+  }
+
+  .subject-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+  }
+}
+
+.email-list {
+  height: 100vh;
+
+  overflow-y: scroll !important;
+}
