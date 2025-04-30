@@ -1,0 +1,204 @@
+{
+  "emails": [
+    {
+      "name": "Emma",
+      "subject": "Inquiry About Part Availability for Drone Model X",
+      "from": "emma@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear M&AParts Support Team,\n\nI am looking to purchase the following parts for Drone Model X:\n\n- Motor A123\n- Propeller X200\n- Sensor Y440\n\nCould you please confirm if these parts are available in stock or if any substitutes are required? If any parts are out of stock, please provide alternatives.\n\nBest regards,\nEmma",
+      "date": "2025-04-29T10:30:00Z"
+    },
+    {
+      "name": "Liam",
+      "subject": "Order Request for Drone Model X Parts",
+      "from": "liam@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear M&AParts Support Team,\n\nWe would like to order the following parts for Drone Model X:\n\n- Motor A123\n- Propeller X200\n- Sensor Y440\n\nPlease let us know if substitutions are needed.\n\nThank you,\nLiam",
+      "date": "2025-04-29T12:00:00Z"
+    },
+    {
+      "name": "John",
+      "subject": "Inquiry About Part Availability for Drone Model Y",
+      "from": "john@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear M&AParts Support Team,\n\nI am looking to purchase the following parts for Drone Model Y:\n\n- Motor A124\n- Propeller X250\n- Sensor Y445\n\nCould you please confirm if these parts are available in stock or if any substitutes are required?\n\nBest regards,\nJohn",
+      "date": "2025-04-29T14:30:00Z"
+    },
+    {
+      "name": "Sarah",
+      "subject": "Order Request for Drone Model Y Parts",
+      "from": "sarah@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear M&AParts Support Team,\n\nWe would like to order the following parts for Drone Model Y:\n\n- Motor A124\n- Propeller X250\n- Sensor Y445\n\nPlease let us know if substitutions are needed.\n\nThank you,\nSarah",
+      "date": "2025-04-29T16:00:00Z"
+    },
+    {
+      "name": "Noah",
+      "subject": "Order Request for Drone Model Z Parts",
+      "from": "noah@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi M&AParts Team,\n\nWe need the following components for Drone Model Z:\n\n- Motor B220\n- Propeller X300\n- Sensor Y500\n\nKindly confirm their availability.\n\nRegards,\nNoah",
+      "date": "2025-04-28T09:45:00Z"
+    },
+    {
+      "name": "Olivia",
+      "subject": "Part Availability Check - Model X",
+      "from": "olivia@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nCan you confirm stock status for:\n\n- Motor A123\n- Propeller X210\n- Sensor Y430\n\nThis is for a potential bulk order.\n\nThanks,\nOlivia",
+      "date": "2025-04-27T11:00:00Z"
+    },
+    {
+      "name": "Ethan",
+      "subject": "Urgent Order - Model Q",
+      "from": "ethan@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear M&AParts,\n\nWe urgently require the following parts:\n\n- Motor C101\n- Propeller X310\n- Sensor Y410\n\nPlease confirm if same-day dispatch is possible.\n\nSincerely,\nEthan",
+      "date": "2025-04-26T08:15:00Z"
+    },
+    {
+      "name": "Ava",
+      "subject": "Backorder Inquiry - Model M",
+      "from": "ava@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi,\n\nI previously requested:\n\n- Motor D330\n- Propeller X270\n\nAre these still on backorder or now available?\n\nThanks,\nAva",
+      "date": "2025-04-25T14:20:00Z"
+    },
+    {
+      "name": "William",
+      "subject": "Spare Parts Inquiry for Drone Alpha",
+      "from": "william@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi team,\n\nLooking to restock the following:\n\n- Motor E555\n- Propeller X200\n\nPlease advise on price and stock.\n\nCheers,\nWilliam",
+      "date": "2025-04-24T13:00:00Z"
+    },
+    {
+      "name": "Mia",
+      "subject": "Component Substitution Options",
+      "from": "mia@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello M&AParts,\n\nIf Motor A123 is unavailable, could you recommend a substitute compatible with Model X?\n\nThank you,\nMia",
+      "date": "2025-04-23T09:55:00Z"
+    },
+    {
+      "name": "James",
+      "subject": "Order Request for Industrial Drone G9",
+      "from": "james@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nWe’d like to place an order for:\n\n- Motor F101\n- Propeller X270\n- Sensor Y499\n\nPlease process this order ASAP.\n\nRegards,\nJames",
+      "date": "2025-04-22T15:30:00Z"
+    },
+    {
+      "name": "Isabella",
+      "subject": "Inventory Inquiry - Drone Model V",
+      "from": "isabella@example.com",
+      "to": "support@maparts.com",
+      "body": "Dear Support,\n\nI’m checking availability for:\n\n- Motor V300\n- Propeller X255\n\nWe need 10 units each.\n\nThanks,\nIsabella",
+      "date": "2025-04-21T11:10:00Z"
+    },
+    {
+      "name": "Benjamin",
+      "subject": "Status Update on Recent Order",
+      "from": "benjamin@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi,\n\nCould you update us on shipping status for:\n\n- Motor A123\n- Sensor Y440\n\nPlaced last Friday.\n\nThanks,\nBen",
+      "date": "2025-04-20T12:45:00Z"
+    },
+    {
+      "name": "Sophia",
+      "subject": "New Parts Request - Surveillance Drone V2",
+      "from": "sophia@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi M&AParts,\n\nWe’re upgrading a fleet and need:\n\n- Motor G101\n- Propeller X205\n- Sensor Y480\n\nPlease quote prices.\n\nRegards,\nSophia",
+      "date": "2025-04-19T08:05:00Z"
+    },
+    {
+      "name": "Lucas",
+      "subject": "Bulk Order Request",
+      "from": "lucas@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nWe’re placing a bulk order for:\n\n- Motor H909 x 25\n- Propeller X220 x 50\n\nPlease confirm lead time.\n\nThanks,\nLucas",
+      "date": "2025-04-18T10:25:00Z"
+    },
+    {
+      "name": "Charlotte",
+      "subject": "Drone Parts Compatibility Inquiry",
+      "from": "charlotte@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi,\n\nIs Motor J300 compatible with Drone Model M2?\n\nThanks,\nCharlotte",
+      "date": "2025-04-17T14:40:00Z"
+    },
+    {
+      "name": "Henry",
+      "subject": "Substitution Needed for Out-of-Stock Sensor",
+      "from": "henry@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nSensor Y445 is out of stock. Do you recommend Sensor Y446 as a substitute?\n\nRegards,\nHenry",
+      "date": "2025-04-16T13:50:00Z"
+    },
+    {
+      "name": "Amelia",
+      "subject": "Drone Beta Replacement Parts",
+      "from": "amelia@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi,\n\nNeed the following for Drone Beta:\n\n- Motor L202\n- Propeller X230\n\nLet me know availability.\n\nThanks,\nAmelia",
+      "date": "2025-04-15T09:00:00Z"
+    },
+    {
+      "name": "Alexander",
+      "subject": "Inquiry: Compatible Motors for Model Z",
+      "from": "alexander@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello M&AParts,\n\nWe’re evaluating motor replacements for Model Z. Is Motor A321 suitable?\n\nThanks,\nAlexander",
+      "date": "2025-04-14T17:30:00Z"
+    },
+    {
+      "name": "Harper",
+      "subject": "Checking Stock for Urgent Order",
+      "from": "harper@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi Support,\n\nCan you confirm if the following are available for immediate dispatch?\n\n- Propeller X210\n- Sensor Y435\n\nBest,\nHarper",
+      "date": "2025-04-13T11:35:00Z"
+    },
+    {
+      "name": "Daniel",
+      "subject": "New Drone Assembly Parts Needed",
+      "from": "daniel@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi team,\n\nPlease quote:\n\n- Motor Z001\n- Propeller X290\n- Sensor Y490\n\nRegards,\nDaniel",
+      "date": "2025-04-12T13:00:00Z"
+    },
+    {
+      "name": "Ella",
+      "subject": "Stock Inquiry - Propeller X200",
+      "from": "ella@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nDo you have Propeller X200 in stock?\n\nNeed 5 units.\n\nThanks,\nElla",
+      "date": "2025-04-11T16:10:00Z"
+    },
+    {
+      "name": "Matthew",
+      "subject": "Component Inquiry - Custom Drone Build",
+      "from": "matthew@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi M&AParts,\n\nWe’re custom-building drones and need:\n\n- Motor C404\n- Propeller X225\n- Sensor Y412\n\nLet me know if compatible options are available.\n\nThanks,\nMatthew",
+      "date": "2025-04-10T09:40:00Z"
+    },
+    {
+      "name": "Grace",
+      "subject": "Urgent Stock Confirmation",
+      "from": "grace@example.com",
+      "to": "support@maparts.com",
+      "body": "Hi Support,\n\nCan you urgently confirm stock for:\n\n- Motor A100\n- Sensor Y400\n\nClient waiting.\n\nThanks,\nGrace",
+      "date": "2025-04-09T08:20:00Z"
+    },
+    {
+      "name": "Jackson",
+      "subject": "Request for Pricing and Lead Time",
+      "from": "jackson@example.com",
+      "to": "support@maparts.com",
+      "body": "Hello,\n\nPlease provide pricing and lead times for the following:\n\n- Motor M999\n- Propeller X260\n\nRegards,\nJackson",
+      "date": "2025-04-08T13:15:00Z"
+    }
+  ]
+}
