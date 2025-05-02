@@ -1,0 +1,10 @@
+.user-panel {
+  .user-panel-container {
+    padding-top: 30px;
+    display: flex;
+
+    > * {
+      flex: 1; // Each child takes 50%
+    }
+  }
+}

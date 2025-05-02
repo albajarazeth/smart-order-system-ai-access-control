@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Brushless Drone 2205 2300KV",
+    "category": "Drone",
+    "image_url": "https://images.pexels.com/photos/3945684/pexels-photo-3945684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "30A Electronic Speed Controller (ESC)",
+    "category": "ESC",
+    "image_url": "https://images.pexels.com/photos/11579194/pexels-photo-11579194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "Carbon Fiber Propeller 5x4.5",
+    "category": "Propeller",
+    "image_url": "https://images.pexels.com/photos/4097206/pexels-photo-4097206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "LiPo Battery 4S 1500mAh",
+    "category": "Battery",
+    "image_url": "https://images.pexels.com/photos/6755074/pexels-photo-6755074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "Flight Controller F4",
+    "category": "Flight Controller",
+    "image_url": "https://images.pexels.com/photos/9182739/pexels-photo-9182739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "FPV Camera 700TVL",
+    "category": "Camera",
+    "image_url": "https://images.pexels.com/photos/5691636/pexels-photo-5691636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "5.8GHz Video Transmitter (VTX)",
+    "category": "Video Transmitter",
+    "image_url": "https://images.pexels.com/photos/19247752/pexels-photo-19247752/free-photo-of-drone-controller-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "GPS Module with Compass",
+    "category": "GPS Module",
+    "image_url": "https://images.pexels.com/photos/31564072/pexels-photo-31564072/free-photo-of-stylish-orange-and-blue-drone-with-remote.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    "name": "Carbon Fiber Frame 250mm",
+    "category": "Frame",
+    "image_url": "https://images.pexels.com/photos/24182026/pexels-photo-24182026/free-photo-of-parts-of-a-small-toy-robot-on-a-wooden-table.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load"
+  },
+  {
+    "name": "Antenna RHCP 5.8GHz",
+    "category": "Antenna",
+    "image_url": "https://images.pexels.com/photos/12975482/pexels-photo-12975482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  }
+]
