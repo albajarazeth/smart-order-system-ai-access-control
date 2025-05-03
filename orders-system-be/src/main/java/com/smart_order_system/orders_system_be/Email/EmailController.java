@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/email")
+@CrossOrigin(origins = "*")
 public class EmailController {
 
     @Autowired
@@ -32,4 +32,5 @@ public class EmailController {
                 .map(email -> new ResponseEntity<>(email, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
 }
