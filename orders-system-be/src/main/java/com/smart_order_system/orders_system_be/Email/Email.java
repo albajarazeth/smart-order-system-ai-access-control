@@ -1,9 +1,19 @@
 package com.smart_order_system.orders_system_be.Email;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+import com.smart_order_system.orders_system_be.User.User;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+
 @Entity
+@Table(name = "emails")
+ @JsonIdentityInfo(
+     generator = ObjectIdGenerators.PropertyGenerator.class,
+     property = "id")
 public class Email {
 
     @Id
@@ -15,7 +25,7 @@ public class Email {
     private String subject;
 
     @Column(nullable = false)
-    private String emailAddress;
+    private String emailAddress;  
 
     @Column(nullable = false)
     private String body;
@@ -23,13 +33,18 @@ public class Email {
     @Column(nullable = false, updatable = false)
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name="userId", nullable = false)
+    private User user;
+
     public Email() {}
 
-    public Email(String subject, String emailAddress, String body, LocalDateTime date) {
+    public Email(String subject, String emailAddress, String body, LocalDateTime date, User user) {
         this.subject = subject;
         this.emailAddress = emailAddress;
         this.body = body;
         this.date = date;
+        this.user = user;
     }
 
     @PrePersist
@@ -78,5 +93,13 @@ public class Email {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
