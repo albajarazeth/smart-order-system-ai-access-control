@@ -7,35 +7,3 @@
   flex-direction: column;
   background-color: #f9f6f7;
 }
-
-.email-container {
-  width: 100%;
-  margin-left: 10px;
-
-  .subject {
-    text-align: left;
-    font-weight: bold;
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-
-  .sender {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 10px;
-
-    .info {
-      display: flex;
-
-      .from {
-        color: #c1c0b9;
-      }
-    }
-  }
-
-  .body {
-    margin-top: 20px;
-    text-align: start;
-  }
-}

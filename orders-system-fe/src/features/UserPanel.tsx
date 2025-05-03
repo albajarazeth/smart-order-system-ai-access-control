@@ -1,4 +1,4 @@
-import EmailForm from "./EmailForm";
+import EmailsSection from "./EmailsSection";
 import PartsCatalogue from "./PartsCatalogue";
 import "./UserPanel.scss";
 
@@ -7,7 +7,7 @@ const UserPanel = () => {
     <div className="user-panel">
       <div className="user-panel-container">
         <PartsCatalogue />
-        <EmailForm />
+        <EmailsSection />
       </div>
     </div>
   );

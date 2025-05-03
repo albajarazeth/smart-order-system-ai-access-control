@@ -28,11 +28,41 @@
     }
 
     .card-body {
-      padding: 16px;
+      .name-section {
+        padding: 10px 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
-      .part-name {
-        font-weight: bold;
-        margin-bottom: 8px;
+        .part-name {
+          font-weight: bold;
+        }
+        .copied-feedback {
+          position: absolute;
+          top: -24px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #4caf50;
+          color: white;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          animation: fadeOut 2s forwards;
+          pointer-events: none;
+          white-space: nowrap;
+        }
+
+        @keyframes fadeOut {
+          0% {
+            opacity: 1;
+          }
+          80% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
       }
 
       .part-description {

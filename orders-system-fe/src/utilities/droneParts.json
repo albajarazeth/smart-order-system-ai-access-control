@@ -1,52 +1,122 @@
 [
   {
-    "name": "Brushless Drone 2205 2300KV",
-    "category": "Drone",
-    "image_url": "https://images.pexels.com/photos/3945684/pexels-photo-3945684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "Brushless Drone 2205 2300KV",
+    "partType": "Drone",
+    "imageUrl": "https://images.pexels.com/photos/3945684/pexels-photo-3945684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 18.99
   },
   {
-    "name": "30A Electronic Speed Controller (ESC)",
-    "category": "ESC",
-    "image_url": "https://images.pexels.com/photos/11579194/pexels-photo-11579194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "30A Electronic Speed (ESC)",
+    "partType": "ESC",
+    "imageUrl": "https://images.pexels.com/photos/11579194/pexels-photo-11579194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 12.49
   },
   {
-    "name": "Carbon Fiber Propeller 5x4.5",
-    "category": "Propeller",
-    "image_url": "https://images.pexels.com/photos/4097206/pexels-photo-4097206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "Carbon Fiber 5x4.5",
+    "partType": "Propeller",
+    "imageUrl": "https://images.pexels.com/photos/4097206/pexels-photo-4097206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 6.99
   },
   {
-    "name": "LiPo Battery 4S 1500mAh",
-    "category": "Battery",
-    "image_url": "https://images.pexels.com/photos/6755074/pexels-photo-6755074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "LiPo Battery 4S",
+    "partTyoe": "Battery",
+    "imageUrl": "https://images.pexels.com/photos/6755074/pexels-photo-6755074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 34.95
   },
   {
-    "name": "Flight Controller F4",
-    "category": "Flight Controller",
-    "image_url": "https://images.pexels.com/photos/9182739/pexels-photo-9182739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "Flight Controller",
+    "partType": "Flight Controller",
+    "imageUrl": "https://images.pexels.com/photos/9182739/pexels-photo-9182739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 27.99
   },
   {
-    "name": "FPV Camera 700TVL",
-    "category": "Camera",
-    "image_url": "https://images.pexels.com/photos/5691636/pexels-photo-5691636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "FPV Camera",
+    "partType": "Camera",
+    "imageUrl": "https://images.pexels.com/photos/5691636/pexels-photo-5691636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 19.99
   },
   {
-    "name": "5.8GHz Video Transmitter (VTX)",
-    "category": "Video Transmitter",
-    "image_url": "https://images.pexels.com/photos/19247752/pexels-photo-19247752/free-photo-of-drone-controller-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "5.8GHz Video (VTX)",
+    "partType": "Video Transmitter",
+    "imageUrl": "https://images.pexels.com/photos/19247752/pexels-photo-19247752/free-photo-of-drone-controller-on-white-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 22.5
   },
   {
-    "name": "GPS Module with Compass",
-    "category": "GPS Module",
-    "image_url": "https://images.pexels.com/photos/31564072/pexels-photo-31564072/free-photo-of-stylish-orange-and-blue-drone-with-remote.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "GPS Module",
+    "partType": "GPS Module",
+    "imageUrl": "https://images.pexels.com/photos/31564072/pexels-photo-31564072/free-photo-of-stylish-orange-and-blue-drone-with-remote.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 29.0
   },
   {
-    "name": "Carbon Fiber Frame 250mm",
-    "category": "Frame",
-    "image_url": "https://images.pexels.com/photos/24182026/pexels-photo-24182026/free-photo-of-parts-of-a-small-toy-robot-on-a-wooden-table.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load"
+    "partName": "Carbon Fiber Frame",
+    "partType": "Frame",
+    "imageUrl": "https://images.pexels.com/photos/24182026/pexels-photo-24182026/free-photo-of-parts-of-a-small-toy-robot-on-a-wooden-table.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load",
+    "price": 39.99
   },
   {
-    "name": "Antenna RHCP 5.8GHz",
-    "category": "Antenna",
-    "image_url": "https://images.pexels.com/photos/12975482/pexels-photo-12975482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    "partName": "Antenna RHCP 5.8GHz",
+    "partType": "Antenna",
+    "imageUrl": "https://images.pexels.com/photos/12975482/pexels-photo-12975482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 7.95
+  },
+  {
+    "partName": "Brushless Motor 2207 2450KV",
+    "partType": "Drone",
+    "imageUrl": "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 20.99
+  },
+  {
+    "partName": "35A ESC BLHeli-S",
+    "partType": "ESC",
+    "imageUrl": "https://images.pexels.com/photos/11579195/pexels-photo-11579195.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 14.25
+  },
+  {
+    "partName": "Nylon Prop 6x4.5",
+    "partType": "Propeller",
+    "imageUrl": "https://images.pexels.com/photos/4097205/pexels-photo-4097205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 5.5
+  },
+  {
+    "partName": "LiPo Battery 6S 1300mAh",
+    "partType": "Battery",
+    "imageUrl": "https://images.pexels.com/photos/6755075/pexels-photo-6755075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 39.99
+  },
+  {
+    "partName": "F4 Flight Controller AIO",
+    "partType": "Flight Controller",
+    "imageUrl": "https://images.pexels.com/photos/9182738/pexels-photo-9182738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 31.95
+  },
+  {
+    "partName": "Mini FPV Cam 1200TVL",
+    "partType": "Camera",
+    "imageUrl": "https://images.pexels.com/photos/5691637/pexels-photo-5691637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 17.49
+  },
+  {
+    "partName": "VTX 25-600mW Switchable",
+    "partType": "Video Transmitter",
+    "imageUrl": "https://images.pexels.com/photos/19247753/pexels-photo-19247753/free-photo-of-fpv-drone-controller-on-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 24.99
+  },
+  {
+    "partName": "uBlox GPS + Compass",
+    "partType": "GPS Module",
+    "imageUrl": "https://images.pexels.com/photos/31564071/pexels-photo-31564071/free-photo-of-colorful-drone-on-desk.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 35.0
+  },
+  {
+    "partName": "X-Frame 5\" Carbon Pro",
+    "partType": "Frame",
+    "imageUrl": "https://images.pexels.com/photos/24182027/pexels-photo-24182027/free-photo-of-disassembled-robot-parts.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load",
+    "price": 44.99
+  },
+  {
+    "partName": "Lollipop 3 RHCP Antenna",
+    "partType": "Antenna",
+    "imageUrl": "https://images.pexels.com/photos/12975483/pexels-photo-12975483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "price": 9.75
   }
 ]
