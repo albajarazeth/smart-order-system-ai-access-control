@@ -26,14 +26,18 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String password;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Email> emails;
 
     public User() {}
 
-    public User(String emailAddress, String name, List<Email> emails) {
+    public User(String emailAddress, String name, String password, List<Email> emails) {
         this.emailAddress = emailAddress;
         this.name = name;
+        this.password=password;
         this.emails = emails;
     }
 
@@ -61,6 +65,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Email> getEmails() {
