@@ -2,6 +2,7 @@ package com.smart_order_system.orders_system_be.EmailAgent;
 
 import com.smart_order_system.orders_system_be.AIService.GeminiService;
 import com.smart_order_system.orders_system_be.Email.Email;
+import com.smart_order_system.orders_system_be.PartPickerAgent.PartPickerAgent;
 
 public class EmailAgent {
 
@@ -36,7 +37,13 @@ public class EmailAgent {
         Controller 5. Do not respond with any sort of "I understand..." statements or anything of the sort ONLY the name of the function
         and in the case of the first one also provide what i asked for
                 """;
-        System.out.println(GeminiService.getResponse(message));
+        String response = GeminiService.getResponse(message);
+
+        if (response.startsWith("SendToPartPicker")) {
+            PartPickerAgent partPickerAgent = new PartPickerAgent();
+            partPickerAgent.retrievePartsFromResponse(response);
+        }
+        System.out.println(response);
     }
     
 
