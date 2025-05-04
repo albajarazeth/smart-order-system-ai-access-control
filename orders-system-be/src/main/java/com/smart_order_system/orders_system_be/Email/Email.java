@@ -33,18 +33,22 @@ public class Email {
     @Column(nullable = false, updatable = false)
     private LocalDateTime date;
 
+    @Column(nullable = false)
+    private Boolean isSentFromAgent;
+
     @ManyToOne
     @JoinColumn(name="userId", nullable = false)
     private User user;
 
     public Email() {}
 
-    public Email(String subject, String emailAddress, String body, LocalDateTime date, User user) {
+    public Email(String subject, String emailAddress, String body, LocalDateTime date, User user, Boolean isSentFromAgent) {
         this.subject = subject;
         this.emailAddress = emailAddress;
         this.body = body;
         this.date = date;
         this.user = user;
+        this.isSentFromAgent=isSentFromAgent;
     }
 
     @PrePersist
@@ -101,5 +105,13 @@ public class Email {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean isIsSentFromAgent() {
+        return this.isSentFromAgent;
+    }
+
+    public void setIsSentFromAgent(Boolean isSentFromAgent) {
+        this.isSentFromAgent = isSentFromAgent;
     }
 }

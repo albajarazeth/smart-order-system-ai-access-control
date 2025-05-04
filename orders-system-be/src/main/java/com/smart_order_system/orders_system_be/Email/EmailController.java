@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.smart_order_system.orders_system_be.EmailAgent.EmailAgent;
 import com.smart_order_system.orders_system_be.User.User;
 import com.smart_order_system.orders_system_be.User.UserRepository;
 
@@ -28,9 +29,8 @@ public class EmailController {
         User user = userOptional.get();
         email.setUser(user);
         Email createdEmail = emailRepository.save(email);
+        EmailAgent.processEmail(email);
         return new ResponseEntity<>(createdEmail, HttpStatus.CREATED);
-
-
     }
 
     @GetMapping
