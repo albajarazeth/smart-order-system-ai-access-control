@@ -1,26 +1,43 @@
 package com.smart_order_system.orders_system_be.Parts;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.smart_order_system.orders_system_be.Inventory.Inventory;
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-public class Part {
-
+@Table(uniqueConstraints= @UniqueConstraint(columnNames ="partName"))
+public class Part{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String partName;
-    private String partType;
+
+    @Column(nullable = false)
     private String imageUrl;
+
+    @Column(nullable = false)
     private Double price;
-    private Integer itemsAvailable;
 
-    @ManyToOne
-    @JoinColumn(name = "inventory_id")
-    @JsonIgnore
-    private Inventory inventory;
+    @Column(nullable = false)
+    private int stock;
 
+    @Column(nullable = false)
+    private String partType;
+    /*Examples of part type would be "motor", "propeller", "controller". 
+    AI agent will search by this description to find substitutions*/
+
+    public Part() {}
+
+    public Part(String partName, Double price, String imageUrl, String partType, int stock) {
+        this.partName = partName;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.partType = partType;
+        this.stock = stock;
+    }
+
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -29,51 +46,44 @@ public class Part {
         this.id = id;
     }
 
-    public String getPartName() {
+    public String getpartName() {
         return partName;
     }
 
-    public void setPartName(String partName) {
+    public void setpartName(String partName) {
         this.partName = partName;
     }
 
-    public String getPartType() {
-        return partType;
-    }
-
-    public void setPartType(String partType) {
-        this.partType = partType;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Double getPrice() {
+    public Double getprice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setprice(Double price) {
         this.price = price;
     }
 
-    public Integer getItemsAvailable() {
-        return itemsAvailable;
+    public void setpartType(String partType) {
+        this.partType = partType;
     }
 
-    public void setItemsAvailable(Integer itemsAvailable) {
-        this.itemsAvailable = itemsAvailable;
+    public String getpartType() {
+        return partType;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public String getimageUrl() {
+        return imageUrl;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setimageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
+
+    public int getStock() {
+        return this.stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
 }

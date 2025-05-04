@@ -107,11 +107,12 @@ public class Email {
         this.user = user;
     }
 
-    public Boolean isIsSentFromAgent() {
+    public Boolean getisSentFromAgent() {
         return this.isSentFromAgent;
     }
-
-    public void setIsSentFromAgent(Boolean isSentFromAgent) {
+    
+    public void setisSentFromAgent(Boolean isSentFromAgent) {
         this.isSentFromAgent = isSentFromAgent;
     }
+    
 }

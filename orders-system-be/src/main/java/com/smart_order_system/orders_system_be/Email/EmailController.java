@@ -23,13 +23,16 @@ public class EmailController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailAgent emailAgent;
+
     @PostMapping
     public ResponseEntity<Email> createEmail(@RequestBody Email email, @RequestParam("userId") Long userId){
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
         email.setUser(user);
         Email createdEmail = emailRepository.save(email);
-        EmailAgent.processEmail(email);
+        emailAgent.processEmail(email);
         return new ResponseEntity<>(createdEmail, HttpStatus.CREATED);
     }
 
