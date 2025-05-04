@@ -1,15 +1,15 @@
 import { FaUserCircle } from "react-icons/fa";
 
 const Email = (email: any) => {
-  const emailData = email.userEmail.userEmail;
+  const emailData = email?.userEmail?.userEmail;
   return (
     <div className="email-container">
-      <div className="subject">{emailData.subject}</div>
+      <div className="subject">{emailData?.subject}</div>
       <div className="sender">
         <FaUserCircle size={20} />{" "}
         <div className="info">
           {/* <div>{email.name}</div> */}
-          <div className="from">&lt;{emailData.emailAddress}&gt;</div>
+          <div className="from">&lt;{emailData?.emailAddress}&gt;</div>
         </div>
       </div>
       <div className="body">
@@ -19,7 +19,7 @@ const Email = (email: any) => {
             <br />
           </React.Fragment>
         ))} */}
-        {email.body}
+        {email?.body}
       </div>
     </div>
   );
