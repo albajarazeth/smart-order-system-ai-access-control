@@ -1,1 +1,1 @@
-export const URL = "http://localhost:8080/email";
+export const URL = "http://localhost:8080/";

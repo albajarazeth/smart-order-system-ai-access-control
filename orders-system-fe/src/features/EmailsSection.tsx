@@ -5,21 +5,36 @@ import EmailForm from "../components/EmailForm";
 import "./EmailsSection.scss";
 import axios from "axios";
 import { URL } from "../utilities/constants";
-import EmailPreview from "../components/EmailPreview";
 import Email from "./Email";
 
-const EmailThread = (userEmail: any) => {
-  return <Email userEmail={userEmail} />;
+const EmailThread = ({ user }: any) => {
+  return <Email userEmail={user} />;
 };
 
 const EmailsSection = () => {
-  const { userEmail, setUserEmail } = useContext(OrderSystemContext);
+  const { userInfo, setUserInfo } = useContext(OrderSystemContext);
   const [emailSent, setEmailSent] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const url = URL + `email?userId=${userInfo.id}`;
+
     try {
-      axios.post(URL, userEmail);
+      await axios.post(url, {
+        subject: userInfo.subject,
+        emailAddress: userInfo.emailAddress,
+        body: userInfo.body,
+        isSentFromAgent: false,
+      });
+
+      const updatedUser = {
+        ...userInfo,
+        subject: userInfo.subject,
+      };
+      localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+      setUser(updatedUser);
+
       setEmailSent(true);
     } catch (error) {
       console.error("Error sending email:", error);
@@ -28,7 +43,7 @@ const EmailsSection = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
-    setUserEmail((prev: any) => ({
+    setUserInfo((prev: any) => ({
       ...prev,
       subject: selectedValue,
     }));
@@ -38,7 +53,7 @@ const EmailsSection = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setUserEmail((prev: any) => ({
+    setUserInfo((prev: any) => ({
       ...prev,
       [name]: value,
     }));
@@ -48,7 +63,7 @@ const EmailsSection = () => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setUserEmail((prevState: any) => ({
+    setUserInfo((prevState: any) => ({
       ...prevState,
       [name]: value,
     }));
@@ -56,7 +71,7 @@ const EmailsSection = () => {
 
   return (
     <div className="email-section-container">
-      {emailSent && <EmailThread userEmail={userEmail} />}
+      {emailSent && <EmailThread user={user} />}
       <div className="emails-section">
         <EmailForm
           emailSent={emailSent}
@@ -69,4 +84,5 @@ const EmailsSection = () => {
     </div>
   );
 };
+
 export default EmailsSection;

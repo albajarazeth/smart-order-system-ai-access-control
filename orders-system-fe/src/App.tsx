@@ -13,19 +13,23 @@ interface IEmail {
   password: string;
   subject: string;
   body: string;
+  role: string;
+  id: any;
 }
 
 function App() {
-  const [userEmail, setUserEmail] = useState<IEmail>({
+  const [userInfo, setUserInfo] = useState<IEmail>({
     name: "",
     emailAddress: "",
     password: "",
     subject: "",
     body: "",
+    role: "USER",
+    id: null,
   });
 
   return (
-    <OrderSystemContext.Provider value={{ userEmail, setUserEmail }}>
+    <OrderSystemContext.Provider value={{ userInfo, setUserInfo }}>
       <div className="order-system-app">
         <BrowserRouter>
           <Routes>

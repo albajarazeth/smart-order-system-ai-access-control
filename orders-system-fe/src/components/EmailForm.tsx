@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { OrderSystemContext } from "../App";
+
 interface IEmailForm {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -9,13 +12,9 @@ interface IEmailForm {
 }
 
 const EmailForm = (props: IEmailForm) => {
-  const {
-    handleSubmit,
-    handleChange,
-    handleInputChange,
-    handleTextAreaChange,
-    emailSent,
-  } = props;
+  const { userInfo } = useContext(OrderSystemContext);
+
+  const { handleSubmit, handleChange, handleTextAreaChange, emailSent } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -46,13 +45,7 @@ const EmailForm = (props: IEmailForm) => {
           </div>
           <div className="input-row">
             <label htmlFor="emailAddress">Email:</label>
-            <input
-              onChange={(e) => handleInputChange(e)}
-              type="emailAddress"
-              id="emailAddress"
-              name="emailAddress"
-              required
-            />
+            <input disabled={true} value={userInfo.emailAddress} />
           </div>
           <label htmlFor="body">Message:</label>
           <textarea

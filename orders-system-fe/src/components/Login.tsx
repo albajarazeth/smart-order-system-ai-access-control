@@ -1,9 +1,50 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Login.scss";
 import { MdOutlineSettingsSystemDaydream } from "react-icons/md";
+import { OrderSystemContext } from "../App";
+import axios from "axios";
+import { URL } from "../utilities/constants";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { userInfo, setUserInfo } = useContext(OrderSystemContext);
   const [activeTab, setActiveTab] = useState("login");
+  const navigate = useNavigate();
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setUserInfo((prev: any) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const onSubmitHandler = async (e: any) => {
+    const url = URL + "user";
+
+    e.preventDefault();
+    if (activeTab === "login") {
+    } else {
+      try {
+        let response = await axios.post(url, {
+          name: userInfo.name,
+          emailAddress: userInfo.emailAddress,
+          password: userInfo.password,
+          role: userInfo.role,
+        });
+        setUserInfo({ ...userInfo, id: response.data.id });
+        navigate("/user");
+      } catch (e) {
+        console.error("Error sending email:", e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  }, [onSubmitHandler]);
 
   const formSection = (type: any) => {
     switch (type) {
@@ -11,12 +52,24 @@ const Login = () => {
         return (
           <>
             <div className="input-row">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" required />
+              <label htmlFor="emailAddress">Email:</label>
+              <input
+                onChange={(e) => handleInputChange(e)}
+                type="emailAddress"
+                id="emailAddress"
+                name="emailAddress"
+                required
+              />
             </div>
             <div className="input-row">
               <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" required />
+              <input
+                onChange={(e) => handleInputChange(e)}
+                type="password"
+                id="password"
+                name="password"
+                required
+              />
             </div>
           </>
         );
@@ -26,15 +79,33 @@ const Login = () => {
           <>
             <div className="input-row">
               <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" required />
+              <input
+                onChange={(e) => handleInputChange(e)}
+                type="text"
+                id="name"
+                name="name"
+                required
+              />
             </div>
             <div className="input-row">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" required />
+              <label htmlFor="emailAddress">Email:</label>
+              <input
+                onChange={(e) => handleInputChange(e)}
+                type="emailAddress"
+                id="emailAddress"
+                name="emailAddress"
+                required
+              />
             </div>
             <div className="input-row">
               <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" required />
+              <input
+                onChange={(e) => handleInputChange(e)}
+                type="password"
+                id="password"
+                name="password"
+                required
+              />
             </div>
           </>
         );
@@ -76,7 +147,7 @@ const Login = () => {
             </div>
           </div>
           <div className="login-form">
-            <form>
+            <form onSubmit={(e) => onSubmitHandler(e)}>
               {formSection(activeTab)}
               <div>
                 <button className="submit" type="submit">
