@@ -36,11 +36,15 @@ const EmailForm = (props: IEmailForm) => {
         <div className="form-content">
           <div className="input-row subject">
             <label htmlFor="subject">Subject:</label>
-            <select onChange={handleChange} id="order-type" name="order-type">
+            <select
+              required={true}
+              onChange={handleChange}
+              id="order-type"
+              name="order-type"
+            >
               <option value="">Select Order Type</option>
-              <option value="inquiry">Inquiry</option>
-              <option value="purchase">Purchase</option>
-              <option value="customer-support">Customer Support</option>
+              <option value="Purchase Order Request">Purchase Order</option>
+              <option value="Inquiry Request">Inquiry</option>
             </select>
           </div>
           <div className="input-row">

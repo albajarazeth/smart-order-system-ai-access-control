@@ -1,10 +1,8 @@
 import { FaUserCircle } from "react-icons/fa";
 import "./Email.scss";
-const Email = (user: any) => {
-  const stored = localStorage.getItem("userInfo");
-  const userInfo = stored ? JSON.parse(stored) : null;
-
-  console.log("MY USER --", userInfo);
+import React from "react";
+const Email = (emailData: any) => {
+  const userInfo = emailData.emailData;
   return (
     <div className="email-container">
       <div className="email-content">
@@ -17,13 +15,14 @@ const Email = (user: any) => {
           </div>
         </div>
         <div className="body">
-          {/* {email.body.split("\n").map((line, index) => (
-          <React.Fragment key={index}>
-            {line}
-            <br />
-          </React.Fragment>
-        ))} */}
-          {userInfo?.body}
+          {userInfo?.isSentFromAgent &&
+            userInfo?.body.split("\n").map((line: any, index: any) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          {!userInfo?.isSentFromAgent && userInfo.body}
         </div>
       </div>
     </div>
