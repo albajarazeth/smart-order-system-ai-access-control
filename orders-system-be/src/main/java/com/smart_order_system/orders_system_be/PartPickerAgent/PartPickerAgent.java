@@ -33,44 +33,32 @@ public class PartPickerAgent {
     @Autowired
     private PartRepository partRepository;
     
-        public void pickParts(String parts){
+        public void pickParts(Email email){
             String prompt="""
-            You are an ai agent that picks parts for an online ecommerce drone parts store
-            the following message is going to first consist of a list of parts that are currently 
-            available within the store and then you will get a list of customer requested parts.
-            You will determine if the parts available in store are enough to fufill the customer's
-            order. If the exact part that they ordered is not available look for a substitution
-            using the partType parameter, if the customer's requested part is similar to another
-            part's partType and it is available use it instead.
-            If some parts are missing but others are available to be fulfilled then specify which
-            parts are not able to be fulfilled.
-            After going through that logic you have four options:
+            You are an AI agent for a drone parts e-commerce store. You will receive a message that first lists the available inventory, followed by a list of customer-requested parts.
 
-            1. Make a quote for the customer. The message must start with "Please send the following
-            quote to customer" and then proceed with listing the parts, quantity, and total price of the parts.
-            You are to only choose this option if either all parts are available and no substitutions were made
-            or only one or a few parts are availble but still no substitutions were made. Remember that the names
-            of the parts in inventory and the name of requested parts have to be exactly the same if the names
-            of the parts are not EXACTLY THE SAME you will have to make a substitution.
+            Your task is to compare the requested parts with the available inventory and select ONE of the following actions:
 
-            2.Make a request to send the substitutions for approval to the supervisor. The message must start with
-            "Please send the following quote to supervisor for substitution approval" and then proceed with listing
-            the parts, quantity, and total price of the parts, and the substituted parts next to each line item.
-            You are to only choose this option if there was a need to make any substitutions.
+            1. Quote without substitutions  
+            If all requested parts are available in inventory (exact name match), or only some are available and none require substitution, respond with:  
+            "Please send the following quote to customer:"  
+            Then list each part with its name, quantity, and total price. Price must always be included.
 
-            3.Make a notice of inventory. The message will only state the amount of parts you have of that particular
-            part type, do not make substitutions here only the name. You choose this option only when the parts list
-            contains the word "inquiry"
+            2. Quote with substitutions  
+            If any requested parts are not available by name, check for substitutions using the `partType` field. A part can be substituted if it
+            has the same part type as a different part. If a substitution is available, respond with:  
+            "Please send the following quote to supervisor for substitution approval:"
+            Then list each part with the substituted part name, original part name, quantity, and total price. Always include which part was substituted.
 
-            4.Make a no quote for the customer. The message must start with "Please send the following quote to
-            customer" and Simply state that there are no parts available and thank them for their request.
+            3. No quote possible  
+            If no parts (or acceptable substitutions) are available, respond with:  
+            "Please send the following quote to customer:"  
+            Then state that no parts are available and thank them for their request.
 
-            You are to only respond with the message from one of the options do not respond with any sort of "I understand..."
-            message ONLY what was requested in any of the three options and nothing else. Make sure to add up the totals
-            for all the parts you are quoting.
+            Your response must begin with the designated message for the selected option. Always include total prices where applicable. Do not explain your decision or include any extra text beyond the selected response format.
             """;
+
             ArrayList<Part> listOfParts=(ArrayList<Part>) partRepository.findAll();
-            System.out.println("list of parts "+listOfParts);
             String internalParts="List of parts in the store:";
             for(int i=0;i<listOfParts.size();i++){
                 internalParts+="Part name:"+listOfParts.get(i).getpartName();
@@ -80,19 +68,18 @@ public class PartPickerAgent {
                 internalParts+="\n";
             }
 
-            prompt+=internalParts+parts;
+            prompt+=internalParts+email.getBody();
 
             String response=GeminiService.getResponse(prompt);
 
             System.out.println(response);
 
             Email newEmail= new Email();
-            newEmail.setSubject("Message from part picker");
+            newEmail.setSubject(email.getSubject());
             newEmail.setEmailAddress("PartPickerAgent");
-            newEmail.setBody(response);
-            newEmail.setUser(user.findById(Long.parseLong("2")).orElseThrow());
+            newEmail.setBody("Message from part picker"+response);
+            newEmail.setUser(email.getUser());
             newEmail.setisSentFromAgent(true);
-
             emailAgent.processEmail(newEmail);
 
 

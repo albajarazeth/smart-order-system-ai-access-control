@@ -27,7 +27,7 @@ public class Email {
     @Column(nullable = false)
     private String emailAddress;  
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String body;
 
     @Column(nullable = false, updatable = false)

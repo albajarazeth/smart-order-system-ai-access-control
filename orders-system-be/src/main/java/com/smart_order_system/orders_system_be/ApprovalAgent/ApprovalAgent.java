@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.smart_order_system.orders_system_be.AIService.GeminiService;
+import com.smart_order_system.orders_system_be.BuilderAgent.BuilderAgent;
 import com.smart_order_system.orders_system_be.Email.Email;
 import com.smart_order_system.orders_system_be.EmailAgent.EmailAgent;
 import com.smart_order_system.orders_system_be.User.UserRepository;
@@ -17,39 +18,53 @@ public class ApprovalAgent {
 
     @Autowired
     private UserRepository user;
+
+    @Autowired
+    private BuilderAgent builderAgent;
     
-    public void processApproval(String message){
+    public void processApproval(Email email){
         String prompt="""
-            You are an ai approval agent, you are to process the following message
-            it will be one of the following options. Process this email and determine which output you will decide on.
-            You only have one of the following options that you can output as a response:
+            You are an AI Approval Agent for a drone parts e-commerce system. Based on the message provided, choose ONLY ONE of the following actions:
 
-            1. SendApprovalRequestToSupervisor(): You choose this when you determine that the message is asking for approval
-             from the supervisor for some substitutions that is required to be sent.
-             
-            2. SendSupervisorApprovalToEmailAgent(): You choose this when you determine that the message is from the supervisor
-            approving of the substitutions made.
+            1. SendApprovalRequestToSupervisor()
+                - Use this when the message is requesting supervisor approval for substitutions.
 
-            3. SendApprovalToBuilderAgent(): You choose this when you determine that the message is from a user approving of a quote.
+            2. SendSupervisorApprovalToEmailAgent()
+                - Use this when the message is from a supervisor approving the substitutions.
 
-            Make your selection and add a "$" symbol between the choice and the user id in the original message. You are to only respond
-             with the message from one of the options do not respond with any sort of "I understand..."
-            message ONLY what was requested in any of the three options and nothing else.
+            3. SendApprovalToBuilderAgent()
+                - Use this when the message contains anything about is from a customer approving a quote or if the subject says approval or similar.
+
+
+            Respond with the function name
+            
+            - Do not include any explanations or extra text.
+            - Do NOT return words like "part picker" as the user ID.
             """;
-            String response=GeminiService.getResponse(prompt+"\n"+message);
+
+
+            String response=GeminiService.getResponse(prompt+email.getBody());
             System.out.println(response);
-            if(response.contains("SendApprovalRequestToSupervisor")){
-                //Due to time constraints we will simply approve of all substitutions
-                int index = response.indexOf('$');
-                String userId = response.substring(index + 1);
-                userId=userId.replaceAll("\\s+", "");
-                Email newEmail= new Email();
-                newEmail.setSubject("[APPROVED] Substitutions are now approved for user " + userId);
-                newEmail.setEmailAddress("ApprovalAgent");
-                newEmail.setBody(message+"Please send this quote to customer it no longer requires approval");
-                newEmail.setUser(user.findById(Long.parseLong(userId)).orElseThrow());
-                newEmail.setisSentFromAgent(true);
-                emailAgent.processEmail(newEmail);
+            if (response.contains("SendApprovalRequestToSupervisor")) {
+                    String cleanedBody = email.getBody().replace("Please send the following quote to supervisor for substitution approval:", "").trim();
+                    Email newEmail = new Email();
+                    newEmail.setSubject(email.getSubject());
+                    newEmail.setEmailAddress("ApprovalAgent");
+                    newEmail.setBody(cleanedBody + "\n\nSubstitutions are now approved for user. Please send this quote to customer. It no longer requires approval.");
+                    newEmail.setUser(email.getUser());
+                    newEmail.setisSentFromAgent(true);
+                    emailAgent.processEmail(newEmail);
             }
+            else if (response.contains("SendApprovalToBuilderAgent")) {
+                Email newEmail = new Email();
+                newEmail.setSubject(email.getSubject());
+                newEmail.setEmailAddress("ApprovalAgent");
+                newEmail.setBody(email.getBody() + " quote is now approved from user. Please make a confirmation of order email");
+                newEmail.setUser(email.getUser());
+                newEmail.setisSentFromAgent(true);
+                builderAgent.makeConfirmationEmail(newEmail);
+        }
+
+            
     }
 }
