@@ -24,6 +24,19 @@ public class UserController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody User loginRequest) {
+        String email = loginRequest.getEmailAddress();
+        String password = loginRequest.getPassword();
+    
+        Optional<User> user = UserRepository.findByEmailAddressAndPassword(email, password);
+        if (user.isPresent()) {
+            return ResponseEntity.ok("User exists. ID: " + user.get().getId());
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
+        }
+    }
+    
     @GetMapping
     public List<User> getAllUser() {
         return UserRepository.findAll();
