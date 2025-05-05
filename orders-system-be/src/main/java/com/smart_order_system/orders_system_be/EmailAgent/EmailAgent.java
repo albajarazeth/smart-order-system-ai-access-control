@@ -1,4 +1,9 @@
 package com.smart_order_system.orders_system_be.EmailAgent;
+import io.permit.sdk.Permit;
+import io.permit.sdk.PermitConfig;
+import io.permit.sdk.api.PermitApiError;
+import io.permit.sdk.enforcement.User;
+import io.permit.sdk.enforcement.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,6 +14,11 @@ import com.smart_order_system.orders_system_be.ApprovalAgent.ApprovalAgent;
 import com.smart_order_system.orders_system_be.Email.Email;
 import com.smart_order_system.orders_system_be.PartPickerAgent.PartPickerAgent;
 import com.smart_order_system.orders_system_be.User.UserRepository;
+import io.permit.sdk.enforcement.Resource;
+import io.permit.sdk.enforcement.User;
+
+import java.io.IOException;
+import java.util.List;
 
 @Component
 public class EmailAgent {
@@ -22,7 +32,42 @@ public class EmailAgent {
     @Autowired
     private UserRepository user;
 
-    public void processEmail(Email email){
+    private final Permit permit;
+
+    String KEY ="permit_key_RCfvHZDuSkm9tiriCBqkYmSR0KjBucQ5pwHhex0b7Xy091GagESgSa97FmuZcaGNxCQz1z4soNRyHBlSYXXWYk";
+
+    @Autowired
+    public EmailAgent(PartPickerAgent partPickerAgent, ApprovalAgent approvalAgent, UserRepository user) {
+        this.partPickerAgent = partPickerAgent;
+        this.approvalAgent = approvalAgent;
+        this.user = user;
+
+        this.permit = new Permit(
+                new PermitConfig.Builder(KEY)
+                        .withDebugMode(false)
+                        .build()
+        );
+
+        assignRoleToPartPickerAgent();
+    }
+
+    public void assignRoleToPartPickerAgent() {
+        try {
+            String agentName = partPickerAgent.getClass().getSimpleName();
+            if ("PartPickerAgent".equals(agentName)) {
+                permit.api.users.assignRole(
+                        agentName,
+                        "PartPicker",
+                        "default"
+                );
+                System.out.println("Assigned 'partpicker' role to the PartPickerAgent.");
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to assign role to the PartPickerAgent: " + e.getMessage());
+        }
+    }
+
+    public void processEmail(Email email) throws PermitApiError, IOException {
         String subject=email.getSubject();
         String body=email.getBody();
         String message = "subject: "+subject+" body: "+body+" is sent from the ai agent?: "+email.getisSentFromAgent().toString()+""" 
@@ -66,6 +111,7 @@ public class EmailAgent {
         `SendToPartPicker(String parts)$Motor 3, Propeller 2`
         - Do NOT include explanations or extra text. 
                 """;
+
         if (subject.contains("[APPROVED]") && email.getisSentFromAgent()) {
             System.out.println("Skipping already approved email from agent");
             return;
@@ -78,16 +124,32 @@ public class EmailAgent {
         String response=GeminiService.getResponse(message+email.getUser().getId().toString());
         System.out.println(response);
 
+
         if(response.contains("SendToPartPicker")){
             int index = response.indexOf('$');
             response = response.substring(index + 1);
+
             Email newEmail = new Email();
             newEmail.setBody(response);
             newEmail.setEmailAddress("Email Agent");
             newEmail.setSubject(email.getUser().getId().toString());
             newEmail.setUser(user.findById(Long.parseLong("2")).orElseThrow());
             newEmail.setisSentFromAgent(true);
-            partPickerAgent.pickParts(newEmail);
+
+            String agentName = partPickerAgent.getClass().getSimpleName();
+
+            boolean permitted = permit.check(
+                    User.fromString(agentName),
+                    "pickParts",
+                    new Resource.Builder("PartPicker").withTenant("default").build()
+            );
+
+            if (permitted) {
+                partPickerAgent.pickParts(newEmail);
+                System.out.println(agentName + " is permitted to pick parts.");
+            } else {
+                System.out.println(agentName + " is NOT permitted to pick parts.");
+            }
         }
 
         else if(response.contains("SendSubstitutionsToApprovalAgent")){
@@ -112,21 +174,21 @@ public class EmailAgent {
             System.out.println("THIS IS THE NEW EMAIL "+newEmail);
             WebClient.Builder builder= WebClient.builder();
             builder.build()
-                .post()
-                .uri("http://localhost:8080/email?userId="+id)
-                .bodyValue(newEmail)
-                .retrieve()
-                .bodyToMono(Email.class)
-                .block();
+                    .post()
+                    .uri("http://localhost:8080/email?userId="+id)
+                    .bodyValue(newEmail)
+                    .retrieve()
+                    .bodyToMono(Email.class)
+                    .block();
         }
-        
+
         else if(response.contains("SendQuoteToCustomerFromApprovalAgent")||response.contains("SendQuoteToCustomerFromPartPicker")){
             String id=email.getSubject();
             response=GeminiService.getResponse(body+" Clean this email up so that it only includes the necessary information for the user to read as a quote and nothing else, return ONLY THE QUOTE INFORMATION DO NOT SAY ANY SORT OF \"i understand...\" message");
             String cleanedBody = response
-            .replace("Please send the following quote to supervisor for substitution approval:", "")
-            .replaceAll("Substitutions are now approved.*", "")
-            .trim();
+                    .replace("Please send the following quote to supervisor for substitution approval:", "")
+                    .replaceAll("Substitutions are now approved.*", "")
+                    .trim();
             Email newEmail = new Email();
             newEmail.setBody(cleanedBody);
             newEmail.setEmailAddress("Email Agent");
@@ -136,13 +198,13 @@ public class EmailAgent {
             System.out.println("THIS IS THE NEW EMAIL "+newEmail);
             WebClient.Builder builder= WebClient.builder();
             builder.build()
-                .post()
-                .uri("http://localhost:8080/email?userId="+id)
-                .bodyValue(newEmail)
-                .retrieve()
-                .bodyToMono(Email.class)
-                .block();
-            
+                    .post()
+                    .uri("http://localhost:8080/email?userId="+id)
+                    .bodyValue(newEmail)
+                    .retrieve()
+                    .bodyToMono(Email.class)
+                    .block();
+
         }
 
         else if(response.contains("SendCustomerApprovalOfQuoteToApprovalAgent")){
@@ -167,20 +229,17 @@ public class EmailAgent {
             newEmail.setisSentFromAgent(true);
             WebClient.Builder builder= WebClient.builder();
             builder.build()
-                .post()
-                .uri("http://localhost:8080/email?userId="+id)
-                .bodyValue(newEmail)
-                .retrieve()
-                .bodyToMono(Email.class)
-                .block();
-            
+                    .post()
+                    .uri("http://localhost:8080/email?userId="+id)
+                    .bodyValue(newEmail)
+                    .retrieve()
+                    .bodyToMono(Email.class)
+                    .block();
+
         }
 
-        
-        
-        
-
     }
-} 
+}
+
 
 
